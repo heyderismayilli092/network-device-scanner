@@ -4,10 +4,6 @@ It scans and displays the devices on the network to which the computer is connec
 
 ---
 
-# Network Device Scanner
-
-Network Device Scanner is a lightweight web-based network discovery tool built with **Flask** and **Scapy**.
-
 ## How It Works
 
 The application runs locally on:
