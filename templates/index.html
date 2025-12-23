@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Device Scanner</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background-color: #050b1a;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .header {
+            max-width: 550px;
+        }
+
+        h1 {
+            text-align: left;
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .description {
+            text-align: left;
+            font-size: 14px;
+            color: #b0c7ff;
+        }
+
+        .action-btn {
+            margin-top: 18px;
+            padding: 12px 26px;
+            background-color: #4fc3ff;
+            color: #031022;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background-color: #6fd0ff;
+            box-shadow: 0 0 12px rgba(79, 195, 255, 0.7);
+        }
+
+        .list-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+        }
+
+        .container {
+            width: 550px;
+            background-color: #0b1530;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 0 25px rgba(0, 140, 255, 0.4);
+            min-height: 350px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #111e44;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: left;
+            transition: 0.1s;
+        }
+
+        li:hover {
+            background-color: #1a2f66;
+            box-shadow: 0 0 10px rgba(0, 140, 255, 0.6);
+        }
+        
+        #error {
+            text-align: left;
+            font-size: 32px;
+            letter-spacing: 2px;
+            color: #ff2b2b;
+        }
+        
+        #iface {
+          color: #069999;
+        }
+    </style>
+</head>
+<body>
+{% if find_devices == "notconnect" %}
+<h1 id="error">The device is not connected to any network!</h1>
+<!--index panel-->
+{% elif find_devices == "" %}
+<div class="header">
+    <h1>Device Scanner</h1>
+    <div class="description">Network Interface: <b id="iface">{{ninterface}}</b></div>
+    <!--scanning button-->
+    <form methods="post" action="/scan">
+      <button class="action-btn">Scan Device</button>
+    </form>
+</div>
+{% elif find_devices == None %}
+<h1 id="error">No devices found!</h1>
+{% else %}
+<!--find device list-->
+<h1>Devices found:</h1>
+<div class="list-wrapper">
+  <div class="container">
+      <ul>
+          {% for ip, mac in find_devices %}
+          <li>
+              <div>{{ ip }}</div>
+              <div>{{ mac }}</div>
+          </li>
+          {% endfor %}
+      </ul>
+  </div>
+</div>
+{% endif %}
+</body>
+</html>
+
