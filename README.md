@@ -34,5 +34,11 @@ The application runs locally on:
 - The application must be run with sufficient privileges to send ARP packets (user sudo)
 - This application is only for allowing you to see the devices or appliances connected to your home modem
 
+---
+
+## Screenshot's
+![Desktop Screenshot](screenshot1.png)
+![Desktop Screenshot](screenshot2.png)
+
 This tool is developed for learning and testing purposes on networks you own or have permission to analyze.
 The author is not responsible for misuse of this software.
